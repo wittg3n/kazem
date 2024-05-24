@@ -9,8 +9,10 @@ import logo from '@/public/logo.svg';
 const LoginPage = () => {
   return (
     <div className="transition-all duration-500 min-h-screen flex items-center justify-center bg-gray-100 w-full">
-      <div className="transition-all duration-500 bg-white p-8 rounded-xl flex flex-col items-center w-[500px] lg:w-[650px] max-w-full">
+      <div className="transition-all duration-500 bg-white p-8 rounded-xl flex flex-col items-center w-[500px] lg:w-[600px] max-w-full">
         <Image src={logo} alt="Logo" width={100} height={100} />
+        <h1 className="text-2xl font-bold my-4 text-center">به کاظم خوش آمدید</h1>
+        <hr className="w-[400px] border-t-2 border-slate-200 my-4" />
         <h2 className="transition-all duration-500 text-3xl font-bold mb-6 text-center mt-5">وارد شوید</h2>
         <form className="mt-8 w-full">
           <div className="mb-4">
@@ -24,8 +26,9 @@ const LoginPage = () => {
           <Button type="submit" className="transition-all duration-500 w-full bg-black hover:bg-gray-700 text-white py-2 px-4 rounded">
             ورود
           </Button>
-          <p className="mt-5 text-sm">نمیتوانید وارد شوید؟ <Link href={'/'} className="text-blue-500 font-semibold">اینجا</Link> را کلید کنید</p>
         </form>
+        <p className="mt-5 text-md">نمیتوانید وارد شوید؟ <Link href={'/'} className="text-blue-500 font-semibold">اینجا</Link> را کلید کنید</p>
+
       </div>
     </div>
   );
