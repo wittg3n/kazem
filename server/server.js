@@ -1,37 +1,61 @@
-require("dotenv").config();
-
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const session = require("express-session");
-const bodyParser = require("body-parser");
-const helmet = require("helmet");
-const cors = require('cors')
-const port = process.env.PORT || 3001
+const session = require('express-session');
+const helmet = require('helmet');
+const path = require('path');
+const cors = require('cors');
+const passport = require('./config/passport'); // Your local strategy
+const passportJWT = require('./config/passport-jwt'); // JWT strategy
+const connectDB = require('./config/db');
+const authApi = require('./api/auth');
+const userApi = require('./api/user');
+const cookieParser = require('cookie-parser');
+const port = process.env.PORT || 3001;
 
+// Middlewares
 
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
 
-//middlewares
-app.use(cors({
-    origin: 'http://localhost:3000', 
-    optionsSuccessStatus: 200 
-  }));
-  app.use(express.urlencoded({ extended: true }));
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(express.json());
-  app.use(helmet());
+// CORS configuration
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+    credentials: true, // Allow credentials (cookies, headers, etc.) to be sent with requests
+  })
+);
 
-  //-session middleware
-  app.use(
-    session({
-      secret: process.env.EXPRESS_SESSION,
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
-  //-passport middleware
-  
+// Other middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser()); // Use cookie-parser middleware
+app.use(helmet());
 
-  app.listen(port, () => {
-    console.log("\x1b[42m%s\x1b[0m", `server is litening on localhost:${port}`);
-  });
-  
+// Passport middleware
+app.use(passport.initialize());
+app.use(passportJWT.initialize()); // Initialize JWT strategy
+
+// Database connection
+connectDB().then(() => {
+  console.log('Connected to the database');
+}).catch((error) => {
+  console.error('Database connection error:', error);
+  process.exit(1); // Exit the process with failure
+});
+
+// Routes
+app.use('/auth', authApi);
+app.use('/user', passport.authenticate('jwt', { session: false }), userApi); // Protect /user routes with JWT
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log('\x1b[42m%s\x1b[0m', `Server is listening on http://localhost:${port}`);
+});
