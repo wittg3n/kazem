@@ -1,4 +1,3 @@
-Sure, here's a comprehensive `README.md` file for your project:
 
 ```markdown
 # Next.js Authentication and Dashboard Application
