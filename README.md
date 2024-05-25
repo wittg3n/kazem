@@ -129,17 +129,3 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
-
-### Explanation
-
-- **Getting Started**: Instructions for getting a copy of the project up and running.
-- **Prerequisites**: Requirements needed before installation.
-- **Installation**: Steps to install the dependencies and set up environment variables.
-- **Usage**: Instructions on how to run the project.
-- **Project Structure**: Overview of the project structure.
-- **API Endpoints**: Details of the API endpoints provided by the backend.
-- **Technologies Used**: List of technologies used in the project.
-- **Contributing**: Guidelines for contributing to the project.
-- **License**: Information about the project license.
-
-Feel free to customize the `README.md` file further according to your project's specific details and requirements.
