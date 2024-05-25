@@ -27,7 +27,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/wittg3n/kazem.git
    cd your-repo-name
    ```
 
