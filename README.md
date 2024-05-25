@@ -1,5 +1,4 @@
 
-```markdown
 # Next.js Authentication and Dashboard Application
 
 This project is a Next.js application with user authentication using JWT tokens. It features a protected dashboard page that only authenticated users can access. The project includes a backend API built with Express.js for handling authentication and user data.
